@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:15.2
+    ports:
+      - "5433:5432"
+    restart: always
+    container_name: integration-tests-prisma
+    environment:
+      POSTGRES_USER: ei_backend_frontend_user_test
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ei_backend_frontend_test

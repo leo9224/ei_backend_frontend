@@ -4,7 +4,6 @@ import {TicketService} from "~/services/TicketService";
 import {Ticket} from "~/models/TicketModel";
 
 const app = express()
-const port = process.env.API_PORT
 const cors = require('cors');
 let corsOptions = {
     origin: 'http://localhost:3001' // Compliant
@@ -40,7 +39,7 @@ app.post('/tickets', async (request, response) => {
     const description = request.body.description
     const status = request.body.status
 
-    await TicketService.create(new Ticket(id,title,description,status))
+    await TicketService.create(new Ticket(id, title, description, status))
 
     response.send("Ticket created")
 })
@@ -53,8 +52,4 @@ app.delete('/tickets/:id', async (request, response) => {
     response.send("Ticket deleted")
 })
 
-const server = app.listen(port, () => {
-    console.log(`API listening on port ${port}`)
-})
-
-export default server
+module.exports = app
