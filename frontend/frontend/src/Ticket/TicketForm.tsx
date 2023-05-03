@@ -41,9 +41,10 @@ function TicketForm() {
             title: (event.currentTarget.elements[1] as HTMLInputElement).value,
             description: (event.currentTarget.elements[2] as HTMLInputElement).value
         }
+        const body = JSON.stringify(jsonBody)
 
         if (ticket !== undefined) {
-            if (jsonBody.id in ticketIds || jsonBody.id !== ticket.id) {
+            if (jsonBody.id in ticketIds && jsonBody.id !== ticket.id) {
                 window.alert("Id already used !")
                 return
             }
@@ -55,9 +56,6 @@ function TicketForm() {
         }
 
         if (ticket === undefined) {
-            jsonBody["status"] = "à faire"
-            const body = JSON.stringify(jsonBody)
-
             const requestOptions = {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
@@ -67,9 +65,6 @@ function TicketForm() {
             fetch(process.env.REACT_APP_API_ENDPOINT + "/tickets", requestOptions)
                 .then(response => response)
         } else {
-            jsonBody["status"] = (event.currentTarget.elements[3] as HTMLInputElement).value
-            const body = JSON.stringify(jsonBody)
-
             const requestOptions = {
                 method: 'PUT',
                 headers: {'Content-Type': 'application/json'},
