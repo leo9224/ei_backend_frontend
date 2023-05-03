@@ -56,6 +56,9 @@ function TicketForm() {
         }
 
         if (ticket === undefined) {
+            jsonBody["status"] = "à faire"
+            const body = JSON.stringify(jsonBody)
+
             const requestOptions = {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
