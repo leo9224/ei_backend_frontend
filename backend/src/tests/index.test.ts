@@ -1,8 +1,7 @@
 import request from "supertest";
 import {Ticket} from "~/models/TicketModel";
 import {TicketService} from "~/services/TicketService";
-
-const server = require("./app");
+import server from "~~/src";
 
 let ticket1: Ticket
 let ticket2: Ticket

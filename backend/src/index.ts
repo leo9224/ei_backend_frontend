@@ -4,6 +4,7 @@ import {TicketService} from "~/services/TicketService";
 import {Ticket} from "~/models/TicketModel";
 
 const app = express()
+const port = process.env.API_PORT
 const cors = require('cors');
 let corsOptions = {
     origin: 'http://localhost:3001' // Compliant
@@ -52,4 +53,8 @@ app.delete('/tickets/:id', async (request, response) => {
     response.send("Ticket deleted")
 })
 
-module.exports = app
+const server = app.listen(port, () => {
+    console.log(`API listening on port ${port}`)
+})
+
+export default server
